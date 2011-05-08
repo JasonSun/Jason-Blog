@@ -1,0 +1,3 @@
+django
+Markdown
+django-tagging
