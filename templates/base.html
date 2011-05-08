@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jason's Blog | Links</title>
+
+    <link rel="stylesheet" href="/media/css/custom.css" type="text/css" media="screen, projection">	
+    <link rel="stylesheet" href="/media/css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/media/css/blueprint/print.css" type="text/css" media="print">	
+    <!--[if lt IE 8]><link rel="stylesheet" href="/media/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="alternate" type="application/atom+xml" title="Latest Entries" href="/feeds/latest/" />
+    {% block extra-css %}{% endblock %}
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+    <div class="header-container">
+        <div class="container">
+            <div id="header" class="span-24 last">
+                <div class="span-17">
+                    <h1 id="branding">Jason's Blog</h1>
+                </div>
+                <div class="span-7 last">
+                    <ul id="main-nav">
+                        <li id="main-nav-entries"><a href="{% url coltrane_entry_archive_index %}">Blog</a></li>
+                        <li id="main-nav-links"><a href="{% url coltrane_link_archive_index %}">Links</a></li>
+                        <li id="main-nav-about"><a href="/about/">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="span-17">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div id="comments">
+                {% block comments %}
+                {% endblock %}
+            </div>
+        </div>
+        <div id="right-sidebar" class="span-7 last">
+            {% block right-sidebar %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="footer-container-1">
+        <div class="container">
+            <div id="footer-1" class="span-24 last">
+                <div class="footer-block span-12">
+                    <h2>About This Site</h2>
+                    <p>This blog is written in <a href="http://www.python.org/" title="Python Programming Language">Python</a> and is using the <a href="http://www.djangoproject.com/" title="Django Web Development Framework">Django</a> web development framework.</p>
+                    <img src="http://www.python.org/images/python-logo.gif" />
+                    <img src="https://www.djangoproject.com/m/img/site/hdr_logo.gif" />
+                </div>
+                <div class="footer-block span-12 last">
+                    <script id="fedora-banner" type="text/javascript" src="http://fedoraproject.org/static/js/release-counter-ext.js?lang=en"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="footer-container-2">
+        <div class="container">
+            <div id="footer-2" class="span-24 last">
+            </div>
+        </div>
+    </div>
+    -->
+</body>
+</html>
