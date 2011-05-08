@@ -3,3 +3,10 @@ This is a blog written in Python using Django web framework. I am new to Django,
 Thanks very much for Mark's contribution of his blog. Please refer to:
 Source code: https://github.com/mliu7/personal-django-blog
 Mark's Blog: http://markliu.me
+
+/* coltrane is a blog app */
+The original version of James Bennett's coltrane blog app is found at:
+http://code.google.com/p/coltrane-blog/
+
+A very nice unofficial repository of the code written in Practial Django Projects 2nd Edition is found at:
+http://bitbucket.org/philgyford/practical-django-projects/src

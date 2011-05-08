@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
-import settings # Needed for PROJECT_ROOT.
+import settings # Needed for MEDIA_ROOT
 
 admin.autodiscover()
 
