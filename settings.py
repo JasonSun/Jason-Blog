@@ -1,10 +1,7 @@
-import os
-import socket
-
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
-    ('Mark Liu', 'example@email.com'),
+    ('user', 'example@email.com'),
 )
 
 MANAGERS = ADMINS
