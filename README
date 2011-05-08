@@ -1,4 +1,12 @@
-This is a blog written in Python using Django web framework. I am new to Django, so this app is used to help me learn Django. It is really an excellent web framework.
+This is a blog written in Python using Django web framework. I am new to Django, so this app is used to help me learn Django. It is really an excellent web framework. Feel free to use this blog!
+
+Usage:
+Make sure you have Django installed(Mine is Django 1.3). In this app Django use tagging and markdown tools, so you have to install tagging and markdown component. Google (python tagging) & (python markdown).
+
+1. git clone git@github.com/JasonSun/Jason-Blog.git Your_Blog
+2. do some updates in setting.py file
+3. python manage.py runserver
+4. open your browser, type 'localhost:8000'
 
 Thanks very much for Mark's contribution of his blog. Please refer to:
 Source code: https://github.com/mliu7/personal-django-blog
