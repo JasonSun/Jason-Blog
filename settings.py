@@ -1,18 +1,5 @@
-""" An example Django settings file for the blog markliu.me"""
-
 import os
 import socket
-
-def contains(str, substr):
-    if str.find(substr) != -1:
-        return True
-    else:
-        return False
-
-if contains(socket.gethostname(), 'webfaction'):
-    LIVEHOST = True
-else:
-    LIVEHOST = False
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -22,52 +9,28 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-if LIVEHOST:
-    DEBUG = False
+DEBUG = True
 
-    EMAIL_HOST = 'smtp.webfaction.com'
-    EMAIL_HOST_USER = 'user'
-    EMAIL_HOST_PASSWORD = 'pass'
-    DEFAULT_FROM_EMAIL = 'example@email.com'
-    SERVER_EMAIL = 'example@email.com'
+DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = os.path.join(PROJECT_ROOT, 'Jason.db')     # Or path to database file if using sqlite3.
+DATABASE_USER = ''             # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
+DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
-    MEDIA_ROOT = '/home/mliu/webapps/media/'
-    MEDIA_URL = 'http://markliu.me/media/'
-    ADMIN_MEDIA_PREFIX = 'http://markliu.me/media/admin/'
+# Absolute path to the directory that holds media.
+# Example: "/home/media/media.lawrence.com/"
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media/')
 
-    DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    DATABASE_NAME = 'db_name'     # Or path to database file if using sqlite3.
-    DATABASE_USER = 'db_user'             # Not used with sqlite3.
-    DATABASE_PASSWORD = 'db_pass'         # Not used with sqlite3.
-    DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-    DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
-else:
-    DEBUG = True
-
-    DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    DATABASE_NAME = os.path.join(PROJECT_ROOT, 'Jason.db')     # Or path to database file if using sqlite3.
-    DATABASE_USER = ''             # Not used with sqlite3.
-    DATABASE_PASSWORD = ''         # Not used with sqlite3.
-    DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-    DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
-    # Absolute path to the directory that holds media.
-    # Example: "/home/media/media.lawrence.com/"
-    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media/')
-
-    # URL that handles the media served from MEDIA_ROOT. Make sure to use a
-    # trailing slash if there is a path component (optional in other cases).
-    # Examples: "http://media.lawrence.com", "http://example.com/media/"
-    MEDIA_URL = 'http://127.0.0.1:8000/media/'
-
-    # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-    # trailing slash.
-    # Examples: "http://foo.com/media/", "/media/".
-    ADMIN_MEDIA_PREFIX = '/amedia/'
-
-# Google Webmaster tool key
-#GOOGLE_WEBMASTER_KEY = 'some_key'
+# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+# trailing slash.
+# Examples: "http://foo.com/media/", "/media/".
+ADMIN_MEDIA_PREFIX = '/amedia/'
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -104,7 +67,7 @@ MIDDLEWARE_CLASSES = (
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-ROOT_URLCONF = 'Personal-Blog.urls'
+ROOT_URLCONF = 'Jason-Blog.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -124,24 +87,13 @@ INSTALLED_APPS = (
     'coltrane',
     'tagging',
     #'debug_toolbar',
-    #'south',
-    #'disqus',
-    #'django_twitter_tags',
-    #'google_webmaster',
 )
-
+'''
 # INTERNAL_IPS is used for django-debug-toolbar.
 # INTERNAL_IPS = ('127.0.0.1',)
 
 # For django-debug-toolbar.
-'''
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
-
-DELICIOUS_USER = 'mliu7'
-DELICIOUS_PASSWORD = 'pass'
-
-DISQUS_API_KEY = 'some_key'
-DISQUS_WEBSITE_SHORTNAME = 'some_name'
 '''
