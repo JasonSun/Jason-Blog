@@ -14,6 +14,8 @@ admindir = os.path.dirname(django.contrib.admin.__file__)
 # Add /media behind it.
 mediadir = os.path.join(admindir, 'media')
 
+os.mkdir('static')
+
 # Compute the path of the symlink under the static directory.
 staticlink = os.path.join('static', 'admin_media')
 
