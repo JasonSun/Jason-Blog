@@ -13,7 +13,7 @@ class Category(models.Model):
     title = models.CharField(max_length=250, help_text='Maximum 250 characters.')
     slug = models.SlugField(unique=True, help_text="Suggested value automatically generated from title. Must be unique.")
     description = models.TextField()
-    
+
     def live_entry_set(self):
         from coltrane.models import Entry
         return self.entry_set.filter(status=Entry.LIVE_STATUS)
@@ -29,23 +29,18 @@ class Category(models.Model):
 
     @models.permalink
     def get_absolute_entries_url(self):
-        return ('coltrane_entry_category_detail', (), { 'slug': self.slug })
-    
+        return ('coltrane_entry_category', (), { 'slug': self.slug })
+
     @models.permalink
     def get_absolute_links_url(self):
-        return ('coltrane_link_category_detail', (), { 'slug': self.slug })
+        return ('coltrane_link_category', (), { 'slug': self.slug })
 
-    class Meta: 
+    class Meta:
         ordering = ['title']
         verbose_name_plural = "Categories"
-    
+
     def __unicode__(self):
         return self.title
-  
-    @models.permalink
-    def get_absolute_url(self):
-        return ('coltrane_category_detail', (), { 'slug': self.slug })
-
 
 class LiveEntryManager(models.Manager):
     def get_query_set(self):
@@ -61,7 +56,7 @@ class Entry(models.Model):
         (DRAFT_STATUS, 'Draft'),
         (HIDDEN_STATUS, 'Hidden'),
     )
-    
+
     # Core fields.
     title = models.CharField(max_length=250)
     excerpt = models.TextField(editable=False, blank=True)
@@ -82,11 +77,11 @@ class Entry(models.Model):
     # Categorization.
     categories = models.ManyToManyField(Category)
     tags = TagField()
-    
+
     # Need to be this way around so that non-live entries will show up in Admin, which uses the default (first) manager.
     live = LiveEntryManager()
     objects = models.Manager()
-    
+
     class Meta:
         ordering = ['-pub_date']
         verbose_name_plural = "Entries"
@@ -99,8 +94,8 @@ class Entry(models.Model):
         if self.excerpt:
             self.excerpt_html = markdown(self.excerpt)
         super(Entry, self).save(force_insert, force_update)
-    
-    
+
+
     @models.permalink
     def get_absolute_url(self):
         return ('coltrane_entry_detail', (), {  'year': self.pub_date.strftime("%Y"),
@@ -123,7 +118,7 @@ class Link(models.Model):
     pub_date = models.DateTimeField(default=datetime.datetime.now)
     slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
     title = models.CharField(max_length=250)
-    
+
     # The actual link bits.
     categories = models.ManyToManyField(Category)
     description = models.TextField(blank=True)
@@ -132,26 +127,26 @@ class Link(models.Model):
     via_url = models.URLField('Via URL', blank=True, help_text='The URL of the site where you spotted the link. Optional.')
     url = models.URLField('URL', unique=True)
     tags = TagField()
-    
+
     class Meta:
         ordering = ['-pub_date']
-        
+
     def __unicode__(self):
         return self.title
-    
+
     def save(self):
         if not self.id and self.post_elsewhere:
             import pydelicious
             from django.utils.encoding import smart_str
-            pydelicious.add(settings.DELICIOUS_USER, 
-                            settings.DELICIOUS_PASSWORD, 
-                            smart_str(self.url), 
-                            smart_str(self.title), 
+            pydelicious.add(settings.DELICIOUS_USER,
+                            settings.DELICIOUS_PASSWORD,
+                            smart_str(self.url),
+                            smart_str(self.title),
                             smart_str(self.tags))
         if self.description:
             self.description_html = markdown(self.description)
         super(Link, self).save()
-    
+
     @models.permalink
     def get_absolute_url(self):
         return ('coltrane_link_detail', (), {   'year': self.pub_date.strftime('%Y'),

@@ -1,8 +1,0 @@
-{% extends "coltrane/base_categories.html" %}
-
-{% block content %}
-    <h2>Categories</h2>
-    {% for object in object_list %}
-        <p><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></p>
-    {% endfor %}
-{% endblock %}

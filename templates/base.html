@@ -3,14 +3,14 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Jason's Blog | Links</title>
+    <title>{% block title%}Jason's Blog{% endblock%}</title>
 
     <link rel="stylesheet" href="/media/css/custom.css" type="text/css" media="screen, projection">	
     <link rel="stylesheet" href="/media/css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="/media/css/blueprint/print.css" type="text/css" media="print">	
     <!--[if lt IE 8]><link rel="stylesheet" href="/media/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <link rel="alternate" type="application/atom+xml" title="Latest Entries" href="/feeds/latest/" />
-    {% block extra-css %}{% endblock %}
+    {% block extra-css %}{% endblock extra-css %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
     <div class="header-container">
@@ -21,8 +21,8 @@
                 </div>
                 <div class="span-7 last">
                     <ul id="main-nav">
-                        <li id="main-nav-entries"><a href="{% url coltrane_entry_archive_index %}">Blog</a></li>
-                        <li id="main-nav-links"><a href="{% url coltrane_link_archive_index %}">Links</a></li>
+                        <li id="main-nav-entries"><a href="{% url coltrane_entry_archive %}">Blog</a></li>
+                        <li id="main-nav-links"><a href="{% url coltrane_link_archive %}">Links</a></li>
                         <li id="main-nav-about"><a href="/about/">About</a></li>
                     </ul>
                 </div>
@@ -33,16 +33,16 @@
         <div class="span-17">
             <div id="content">
                 {% block content %}
-                {% endblock %}
+                {% endblock content %}
             </div>
             <div id="comments">
                 {% block comments %}
-                {% endblock %}
+                {% endblock comments %}
             </div>
         </div>
         <div id="right-sidebar" class="span-7 last">
             {% block right-sidebar %}
-            {% endblock %}
+            {% endblock right-sidebar %}
         </div>
     </div>
     <div class="footer-container-1">
