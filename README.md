@@ -4,13 +4,10 @@
 <p>I have deployed this blog app on Dotcloud, please refer <a href="http://docs.dotcloud.com/tutorials/django">Dotcloud docs</a></p>
 <h1>Usage:</h1>
 <p>Make sure you have <strong>Django</strong> installed(Mine is Django 1.3). In this app Django use <strong>tagging</strong> and <strong>Markdown-Python</strong> tools, so you have to install tagging and markdown component. Google (python tagging) &amp; (python markdown).</p>
-<pre><code>`git clone git@github.com/JasonSun/Jason-Blog.git Your_Blog
-
+<pre><code>git clone git@github.com/JasonSun/Jason-Blog.git Your_Blog
 do some updates in setting.py file
-
 python manage.py runserver
-
-open your browser, type 'localhost:8000'`
+open your browser, type 'localhost:8000'
 </code></pre>
 <h1>Acknowledgement</h1>
 <p>Thanks very much for Mark's contribution of his blog. Please refer to:</p>
