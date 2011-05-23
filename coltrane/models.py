@@ -58,6 +58,8 @@ class Entry(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique_for_date='pub_date')
     body = wmd_models.MarkDownField(verbose_name = 'Content')
+    # In content window, we want to display body itself rather than body with html tags
+    # So we let 'body_html' field store 'markdown(body)'
     body_html = wmd_models.MarkDownField(editable = False, blank = True)
     pub_date = models.DateTimeField(default=datetime.datetime.now, verbose_name = 'Date Published')
     author = models.ForeignKey(User)
@@ -99,6 +101,7 @@ class Link(models.Model):
     slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
     url = models.URLField(unique=True)
     description = wmd_models.MarkDownField()
+    # See comments in class Entry body and body_html field
     description_html = wmd_models.MarkDownField(editable = False, blank = True)
     via_name = models.CharField(max_length=250, blank=True, help_text='The name of the person whose site you spotted the link on. Optional.')
     via_url = models.URLField(blank=True, help_text='The URL of the site where you spotted the link. Optional.')
