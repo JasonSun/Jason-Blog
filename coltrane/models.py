@@ -58,6 +58,7 @@ class Entry(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique_for_date='pub_date')
     body = wmd_models.MarkDownField(verbose_name = 'Content')
+    body_html = wmd_models.MarkDownField(editable = False, blank = True)
     pub_date = models.DateTimeField(default=datetime.datetime.now, verbose_name = 'Date Published')
     author = models.ForeignKey(User)
     enable_comments = models.BooleanField(default=True)
@@ -77,7 +78,7 @@ class Entry(models.Model):
         return self.title
 
     def save(self, force_insert = False, force_update = False):
-        self.body = markdown(self.body)
+        self.body_html = markdown(self.body)
         super(Entry, self).save(force_insert, force_update)
 
     @models.permalink
@@ -98,6 +99,7 @@ class Link(models.Model):
     slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
     url = models.URLField(unique=True)
     description = wmd_models.MarkDownField()
+    description_html = wmd_models.MarkDownField(editable = False, blank = True)
     via_name = models.CharField(max_length=250, blank=True, help_text='The name of the person whose site you spotted the link on. Optional.')
     via_url = models.URLField(blank=True, help_text='The URL of the site where you spotted the link. Optional.')
     enable_comments = models.BooleanField(default=True)
@@ -113,7 +115,7 @@ class Link(models.Model):
         return self.title
 
     def save(self, force_insert = False, force_update = False):
-        self.description = markdown(self.description)
+        self.description_html = markdown(self.description)
         super(Link, self).save(force_insert, force_update)
 
     @models.permalink
