@@ -17,7 +17,7 @@ mediadir = os.path.join(admindir, 'media')
 os.mkdir('static')
 
 # Compute the path of the symlink under the static directory.
-staticlink = os.path.join('static', 'admin_media')
+staticlink = os.path.join('static', 'static')
 
 # If the link already exists, delete it.
 if os.path.islink(staticlink):

@@ -1,18 +1,24 @@
 import datetime
-import pdb
 
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
 from markdown import markdown
+from wmd import models as wmd_models
 import tagging
-from tagging.fields import TagField, Tag
+from tagging.fields import TagField
 
 class Category(models.Model):
     title = models.CharField(max_length=250, help_text='Maximum 250 characters.')
     slug = models.SlugField(unique=True, help_text="Suggested value automatically generated from title. Must be unique.")
     description = models.TextField()
+
+    class Meta:
+        ordering = ['title']
+        verbose_name_plural = "Categories"
+
+    def __unicode__(self):
+        return self.title
 
     def live_entry_set(self):
         from coltrane.models import Entry
@@ -35,17 +41,9 @@ class Category(models.Model):
     def get_absolute_links_url(self):
         return ('coltrane_link_category', (), { 'slug': self.slug })
 
-    class Meta:
-        ordering = ['title']
-        verbose_name_plural = "Categories"
-
-    def __unicode__(self):
-        return self.title
-
 class LiveEntryManager(models.Manager):
     def get_query_set(self):
         return super(LiveEntryManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
-
 
 class Entry(models.Model):
     LIVE_STATUS = 1
@@ -57,24 +55,13 @@ class Entry(models.Model):
         (HIDDEN_STATUS, 'Hidden'),
     )
 
-    # Core fields.
     title = models.CharField(max_length=250)
-    excerpt = models.TextField(editable=False, blank=True)
-    body = models.TextField()
-    pub_date = models.DateTimeField(default=datetime.datetime.now)
-
-    # Fields to store generated HTML.
-    excerpt_html = models.TextField(editable=False, blank=True)
-    body_html = models.TextField(editable=False, blank=True)
-
-    # Metadata.
+    slug = models.SlugField(unique_for_date='pub_date')
+    body = wmd_models.MarkDownField(verbose_name = 'Content')
+    pub_date = models.DateTimeField(default=datetime.datetime.now, verbose_name = 'Date Published')
     author = models.ForeignKey(User)
     enable_comments = models.BooleanField(default=True)
-    featured = models.BooleanField(default=False)
-    slug = models.SlugField(unique_for_date='pub_date')
     status = models.IntegerField(choices=STATUS_CHOICES, default=LIVE_STATUS)
-
-    # Categorization.
     categories = models.ManyToManyField(Category)
     tags = TagField()
 
@@ -89,12 +76,9 @@ class Entry(models.Model):
     def __unicode__(self):
         return self.title
 
-    def save(self, force_insert=False, force_update=False):
-        self.body_html = markdown(self.body)
-        if self.excerpt:
-            self.excerpt_html = markdown(self.excerpt)
+    def save(self, force_insert = False, force_update = False):
+        self.body = markdown(self.body)
         super(Entry, self).save(force_insert, force_update)
-
 
     @models.permalink
     def get_absolute_url(self):
@@ -109,23 +93,17 @@ try:
 except tagging.AlreadyRegistered:
     pass
 
-
 class Link(models.Model):
-    # Metadata.
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
+    url = models.URLField(unique=True)
+    description = wmd_models.MarkDownField()
+    via_name = models.CharField(max_length=250, blank=True, help_text='The name of the person whose site you spotted the link on. Optional.')
+    via_url = models.URLField(blank=True, help_text='The URL of the site where you spotted the link. Optional.')
     enable_comments = models.BooleanField(default=True)
-    post_elsewhere = models.BooleanField('Post to Delicious', default=True, help_text='If checked, this will be posted both to your weblog and to your delicious.com account. (Currently disabled)')
     posted_by = models.ForeignKey(User)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
-    slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
-    title = models.CharField(max_length=250)
-
-    # The actual link bits.
     categories = models.ManyToManyField(Category)
-    description = models.TextField(blank=True)
-    description_html = models.TextField(editable=False, blank=True)
-    via_name = models.CharField('Via', max_length=250, blank=True, help_text='The name of the person whose site you spotted the link on. Optional.')
-    via_url = models.URLField('Via URL', blank=True, help_text='The URL of the site where you spotted the link. Optional.')
-    url = models.URLField('URL', unique=True)
     tags = TagField()
 
     class Meta:
@@ -134,18 +112,9 @@ class Link(models.Model):
     def __unicode__(self):
         return self.title
 
-    def save(self):
-        if not self.id and self.post_elsewhere:
-            import pydelicious
-            from django.utils.encoding import smart_str
-            pydelicious.add(settings.DELICIOUS_USER,
-                            settings.DELICIOUS_PASSWORD,
-                            smart_str(self.url),
-                            smart_str(self.title),
-                            smart_str(self.tags))
-        if self.description:
-            self.description_html = markdown(self.description)
-        super(Link, self).save()
+    def save(self, force_insert = False, force_update = False):
+        self.description = markdown(self.description)
+        super(Link, self).save(force_insert, force_update)
 
     @models.permalink
     def get_absolute_url(self):

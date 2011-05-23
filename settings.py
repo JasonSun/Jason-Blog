@@ -3,7 +3,7 @@ import os
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
-    ('user', 'example@email.com'),
+    #('user', 'example@email.com'),
 )
 
 MANAGERS = ADMINS
@@ -24,12 +24,23 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media/')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+
+STATIC_URL = '/static/'
+
+'''
+# This is for develpment server on local machine
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static/'),
+)
+'''
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/static/admin_media/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -61,9 +72,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-
-    # Debug toolbar. This goes after any middleware that encodes the response's content.
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -81,18 +89,9 @@ INSTALLED_APPS = (
     'django.contrib.markup', # 'contrib.markup' implementation for python markdown
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.flatpages',
     'coltrane',
     'tagging',
-    #'debug_toolbar',
+    'wmd',
 )
-'''
-# INTERNAL_IPS is used for django-debug-toolbar.
-# INTERNAL_IPS = ('127.0.0.1',)
-
-# For django-debug-toolbar.
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-}
-'''
