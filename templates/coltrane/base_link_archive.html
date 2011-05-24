@@ -5,7 +5,7 @@
         <h2>{{ link.title }}</h2>
         <p>Published on {{ link.pub_date|date:"F j, Y" }}</p>
         {% if link.description %}
-            {{ link.description|truncatewords_html:"50"|safe }}
+            {{ link.description_html|truncatewords_html:"50"|safe }}
         {% endif %}
         <p><a href="{{ link.get_absolute_url }}">See more details</a></p>
     {% endfor %}

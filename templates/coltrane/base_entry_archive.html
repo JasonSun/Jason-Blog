@@ -11,7 +11,7 @@
             {{ entry.body|truncatewords:"50" }}
         {% endif %}
         {% endcomment %}
-        {{ entry.body|truncatewords_html:'50'|safe }}
+        {{ entry.body_html|truncatewords_html:'50'|safe }}
         <p><a href="{{ entry.get_absolute_url }}">Read full entry</a></p>
     {% endfor %}
 {% endblock %}
