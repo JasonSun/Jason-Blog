@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
+    (r'^comments/', include('django.contrib.comments.urls')),
 
     #Static media url not needed for production because it is being served by nginx
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',

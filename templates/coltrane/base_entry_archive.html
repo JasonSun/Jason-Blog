@@ -4,13 +4,6 @@
     {% for entry in object_list %}
         <h2>{{ entry.title }}</h2>
         <p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
-        {% comment %}
-        {% if entry.excerpt_html %}
-            {{ entry.excerpt_html|safe }}
-        {% else %}
-            {{ entry.body|truncatewords:"50" }}
-        {% endif %}
-        {% endcomment %}
         {{ entry.body_html|truncatewords_html:'50'|safe }}
         <p><a href="{{ entry.get_absolute_url }}">Read full entry</a></p>
     {% endfor %}
