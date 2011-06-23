@@ -2,9 +2,11 @@
 
 {% block content %}
     {% for entry in object_list %}
+    <div class="archive">
         <h2>{{ entry.title }}</h2>
         <p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
         {{ entry.body_html|truncatewords_html:'50'|safe }}
-        <p><a href="{{ entry.get_absolute_url }}">Read full entry</a></p>
+        <a href="{{ entry.get_absolute_url }}">Read full entry</a>
+    </div>
     {% endfor %}
 {% endblock %}

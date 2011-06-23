@@ -3,71 +3,42 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>{% block title%}Jason's Blog{% endblock%}</title>
+    <title>{% block title %}Jason's Blog{% endblock %}</title>
 
-    <link rel="stylesheet" href="/media/css/custom.css" type="text/css" media="screen, projection">	
-    <link rel="stylesheet" href="/media/css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="/media/css/blueprint/print.css" type="text/css" media="print">	
-    <!--[if lt IE 8]><link rel="stylesheet" href="/media/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="/media/css/blog.css" type="text/css" media="screen, projection">	
     <link rel="shortcut icon" href="https://www.dotcloud.com/static/images/icon.png">
     <link rel="alternate" type="application/atom+xml" title="Latest Entries" href="/feeds/latest/" />
-    {% block extra-css %}{% endblock extra-css %}
 </head>
-<body class="{% block bodyclass %}{% endblock %}">
-    <div class="header-container">
-        <div class="container">
-            <div id="header" class="span-24 last">
-                <div class="span-17">
-                    <h1 id="branding">Jason's Blog</h1>
-                </div>
-                <div class="span-7 last">
-                    <ul id="main-nav">
-                        <li id="main-nav-entries"><a href="{% url coltrane_entry_archive %}">Blog</a></li>
-                        <li id="main-nav-links"><a href="{% url coltrane_link_archive %}">Links</a></li>
-                        <li id="main-nav-about"><a href="/about/">About</a></li>
-                    </ul>
-                </div>
-            </div>
+<body>
+    <div class="header">
+        <div id="logo">
+            <h1>Jason's Space</h1>
+        </div>
+        <div id="navigation">
+            <a href={% url coltrane_entry_archive %}>Blog</a>
+            <a href={% url coltrane_link_archive %}>Links</a>
+            <a href="/about/">About</a>
         </div>
     </div>
     <div class="container">
-        <div class="span-17">
-            <div id="content">
+        <div class="content">
+            <div id="detail">
                 {% block content %}
-                {% endblock content %}
+                {% endblock %}
             </div>
-            <div id="comments">
+            <div id="comment">
                 {% block comments %}
-                {% endblock comments %}
+                {% endblock %}
             </div>
         </div>
-        <div id="right-sidebar" class="span-7 last">
+        <div id="right-sidebar">
             {% block right-sidebar %}
-            {% endblock right-sidebar %}
+            {% endblock %}
         </div>
     </div>
-    <div class="footer-container-1">
-        <div class="container">
-            <div id="footer-1" class="span-24 last">
-                <div class="footer-block span-12">
-                    <h2>About This Site</h2>
-                    <p>This blog is written in <a href="http://www.python.org/" title="Python Programming Language">Python</a> and is using the <a href="http://www.djangoproject.com/" title="Django Web Development Framework">Django</a> web development framework.</p>
-                    <img src="http://www.python.org/images/python-logo.gif" />
-                    <img src="https://www.djangoproject.com/m/img/site/hdr_logo.gif" />
-                </div>
-                <div class="footer-block span-12 last">
-                    <script id="fedora-banner" type="text/javascript" src="http://fedoraproject.org/static/js/release-counter-ext.js?lang=en"></script>
-                </div>
-            </div>
-        </div>
+    <div class="footer">
+        <p>Copyright©2011 <a href="http://blog.glutton.dotcloud.com">Jason's Space</a></p>
+        <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25.gif" border="0" alt="A Django site." title="A Django site." /></a> hosted by <span><a href="www.dotcloud.com">Dotcloud</a></span>
     </div>
-    <!--
-    <div class="footer-container-2">
-        <div class="container">
-            <div id="footer-2" class="span-24 last">
-            </div>
-        </div>
-    </div>
-    -->
 </body>
 </html>

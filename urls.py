@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 import settings # Needed for MEDIA_ROOT
+from coltrane.feeds import LatestEntriesFeed
 
 admin.autodiscover()
 
@@ -16,5 +17,6 @@ urlpatterns = patterns('',
     (r'^categories/', include('coltrane.urls.categories')),
     (r'^links/', include('coltrane.urls.links')),
     (r'^tags/', include('coltrane.urls.tags')),
-    (r'', include('coltrane.urls.entries')),
+    (r'^blog/', include('coltrane.urls.entries')),
+    (r'^feeds/entries/$', LatestEntriesFeed()),
 )

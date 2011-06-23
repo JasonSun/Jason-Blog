@@ -1,0 +1,220 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ *    v2.0 | 20110126
+ *  License: none (public domain)      
+ */
+
+/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+        margin: 0;
+            padding: 0;
+                border: 0;
+                    font-size: 100%;
+                        font: inherit;
+                            vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+        display: block;
+}
+body {
+        line-height: 1;
+}
+ol, ul {
+        list-style: none;
+}
+blockquote, q {
+        quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+        content: '';
+            content: none;
+}
+table {
+        border-collapse: collapse;
+            border-spacing: 0;
+}
+
+/* Custom CSS */
+body {
+    background-color:#C6C6C6;
+    margin:30px;
+    padding-left:100px;
+    padding-right:100px;
+}
+
+a {
+    text-decoration:none;
+    color:black;
+}
+a:hover {
+    color:red;
+}
+h2 {
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:25px;
+    font-style:italic;
+    font-weight:bold;
+    color:#727270;
+    margin-bottom:10px;
+}
+h3 {
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:20px;
+    font-style:italic;
+    font-weight:bold;
+    color:#727270;
+    margin-bottom:10px;
+}
+/* header CSS */
+.header {
+    margin-top:20px;
+    margin-bottom:20px;
+    overflow:hidden;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.header #logo {
+    float:left;
+}
+.header #logo h1 {
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:50px;
+    font-weight:bold;
+    color:#727270;
+}
+.header #navigation {
+    float:right;
+    padding-top:10px;
+    padding-right:50px;
+}
+#navigation a {
+    border-radius:20px;
+    padding:5px 10px 5px 10px;
+    color:#55c4e8;
+    background-color:white;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:20px;
+    font-weight:bold;
+    margin-right:10px;
+}
+#navigation a:hover {
+    background-color:#55c4e8;
+    color:white;
+}
+
+/* Container CSS */
+.container {
+    overflow:hidden;
+}
+.content {
+    width:700px;
+    float:left;
+}
+.archive {
+	background-color:white;
+	margin-bottom:20px;
+	border-radius:5px;
+	padding:10px;
+}
+.archive p {
+	font-style:italic;
+	margin-bottom:10px;
+}
+.archive a {
+	border-radius:10px;
+    color:#55c4e8;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:15px;
+    font-style:italic;
+    font-weight:bold;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.archive a:hover {
+	background-color:#55c4e8;
+	color:white;
+}
+.content #detail #about {
+    background-color:white;
+    border-radius:5px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:10px;
+}
+.content #detail #about p {
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:18px;
+    padding:10px;
+    line-height:40px;
+}
+#about h2 {margin-top:10px;}
+.content #detail #about a {
+    border-radius:20px;                                                   
+    padding:5px 10px 5px 10px;
+    color:#55c4e8;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:20px;
+    font-weight:bold;                                                     
+    margin-right:10px;
+}
+.content #detail #about a:hover {
+    background-color:#55c4e8;
+    color:white;
+}
+.content #comment {
+    background-color:white;
+    border-radius:5px;
+}
+#right-sidebar {
+    width:250px;
+    float:right;
+}
+.sidebar-block {
+    background-color:white;
+    border-radius:5px;
+    margin-bottom:20px;
+    padding:10px;
+}
+.sidebar-block li {
+	margin-bottom:10px;
+	font-weight:bold;
+}
+.sidebar-block li a:hover {
+	color:#55c4e8;
+	background-color:#996600;
+	border-radius:2px;
+	padding:5px;
+}
+.image-block img {
+    width:100%;
+    border-radius:5px;
+    margin-bottom:20px;
+}
+
+/* footer CSS */
+.footer {
+    margin-top:20px;
+    text-align:center;
+}
+.footer p {
+    margin-bottom:10px;
+}
+.footer span {
+    padding-bottom:5px;
+    font-weight:bold;
+    font-style:italic;
+}
