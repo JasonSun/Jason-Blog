@@ -10,4 +10,4 @@ Make sure you have **Django** installed(Mine is Django 1.3). In this app Django 
     git clone git@github.com/JasonSun/Jason-Blog.git Your_Blog
     do some updates in setting.py file
     python manage.py runserver
-    open your browser, type 'localhost:8000'
+    open your browser, type 'localhost:8000/blog/'

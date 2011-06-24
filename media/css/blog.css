@@ -148,6 +148,35 @@ h3 {
 	background-color:#55c4e8;
 	color:white;
 }
+.entry-meta a {
+	background-color:#b22222;
+	color:#55c4e8;
+	font-weight:bold;
+	border-radius:10px;
+	padding-left:10px;
+	padding-right:10px;
+}
+.entry-detail {
+	background-color:white;
+	margin-bottom:20px;
+	margin-top:10px;
+	padding:10px;
+	border-radius:10px;
+}
+.comment-list {
+	background-color:white;
+	padding:10px;
+	border-radius:10px;
+}
+.comment-form p {
+	margin-bottom:10px;
+}
+.comment-form input {
+	padding:3px;
+}
+.comment-form input:focus {
+	background-color:#55c4e8;
+}
 .content #detail #about {
     background-color:white;
     border-radius:5px;
@@ -175,17 +204,13 @@ h3 {
     background-color:#55c4e8;
     color:white;
 }
-.content #comment {
-    background-color:white;
-    border-radius:5px;
-}
 #right-sidebar {
     width:250px;
     float:right;
 }
 .sidebar-block {
     background-color:white;
-    border-radius:5px;
+    border-radius:10px;
     margin-bottom:20px;
     padding:10px;
 }
@@ -195,7 +220,7 @@ h3 {
 }
 .sidebar-block li a:hover {
 	color:#55c4e8;
-	background-color:#996600;
+	background-color:#b22222;
 	border-radius:2px;
 	padding:5px;
 }
